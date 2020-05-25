@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import * as CartActions from '../../store/modules/cart/actions'
 
 import {
   MdRemoveCircleOutline,
@@ -50,7 +51,7 @@ function Cart({ cart, dispatch }) {
                 <button
                   type="button"
                   onClick={() =>
-                    dispatch({ type: 'REMOVE_FROM_CART', id: product.id })
+                    dispatch(CartActions.removeFromCart(product.id))
                   }
                 >
                   <MdDelete size={20} color="#7159c1" />
