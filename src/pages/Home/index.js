@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { MdAddShoppingCart } from 'react-icons/md'
-
 import { formatPrice } from '../../util/format'
 import api from '../../services/api'
 
@@ -10,7 +10,7 @@ import * as CartActions from '../../store/modules/cart/actions'
 
 import { ProductList } from './styles'
 
-const Home = ({ dispatch }) => {
+const Home = ({ addToCart }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Home = ({ dispatch }) => {
   }, [])
 
   const handleAddProduct = (product) => {
-    dispatch(CartActions.addToCart(product))
+    addToCart(product)
   }
 
   return (
@@ -54,4 +54,7 @@ const Home = ({ dispatch }) => {
   )
 }
 
-export default connect()(Home)
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(CartActions, dispatch)
+
+export default connect(null, mapDispatchToProps)(Home)
