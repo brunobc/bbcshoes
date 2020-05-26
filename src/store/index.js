@@ -4,7 +4,14 @@ import createSagaMiddleware from 'redux-saga'
 import roorReducer from './modules/rootReducer'
 import roorSaga from './modules/rootSaga'
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMonitor =
+  process.env.NODE_ENV === 'development'
+    ? console.tron.createSagaMonitor()
+    : null
+
+const sagaMiddleware = createSagaMiddleware({
+  sagaMonitor,
+})
 
 /*
   compose: merge configurations
