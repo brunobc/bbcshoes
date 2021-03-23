@@ -12,7 +12,7 @@
     "history": "^4.10.1",
     "http-proxy-middleware": "^1.0.6",
     "immer": "^9.0.1",
-    "json-server": "^0.16.3",
+    "lowdb": "^1.0.0",
     "polished": "^3.6.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -27,7 +27,7 @@ function* addToCart({ id }) {
   if (productExists) {
     yield put(updateAmountSuccess(id, amount))
   } else {
-    const response = yield call(api.get, `/api/products/${id}`)
+    const response = yield call(api.get, `/api/product/${id}`)
 
     const data = {
       ...response.data,
