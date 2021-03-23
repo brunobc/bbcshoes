@@ -9,7 +9,7 @@ const middlewares = jsonServer.defaults()
 const PORT = process.env.PORT || 5000;
 
 app.use(middlewares);
-app.use(router)
+app.use('/api', router)
 
   app.use(express.static(path.join(__dirname, 'build')));
 

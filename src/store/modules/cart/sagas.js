@@ -1,7 +1,7 @@
 import { call, select, put, all, takeLatest } from 'redux-saga/effects'
 import { toast } from 'react-toastify'
 
-import api from '../../../services/api'
+import api from 'axios'
 import history from '../../../services/history'
 import { formatPrice } from '../../../util/format'
 
@@ -12,7 +12,7 @@ function* addToCart({ id }) {
     state.cart.find((p) => p.id === id)
   )
 
-  const stock = yield call(api.get, `./stock/${id}`)
+  const stock = yield call(api.get, `./api/stock/${id}`)
 
   const stockAmount = stock.data.amount
   const currentAmount = productExists ? productExists.amount : 0
@@ -27,7 +27,7 @@ function* addToCart({ id }) {
   if (productExists) {
     yield put(updateAmountSuccess(id, amount))
   } else {
-    const response = yield call(api.get, `/products/${id}`)
+    const response = yield call(api.get, `/api/products/${id}`)
 
     const data = {
       ...response.data,
@@ -44,7 +44,7 @@ function* addToCart({ id }) {
 function* updateAmount({ id, amount }) {
   if (amount <= 0) return
 
-  const stock = yield call(api.get, `stock/${id}`)
+  const stock = yield call(api.get, `/api/stock/${id}`)
   const stockAmount = stock.data.amount
 
   if (amount > stockAmount) {

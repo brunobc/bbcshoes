@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { MdAddShoppingCart } from 'react-icons/md'
 import { formatPrice } from '../../util/format'
-import api from '../../services/api'
+import api from 'axios'
 
 import * as CartActions from '../../store/modules/cart/actions'
 
@@ -16,7 +16,7 @@ const Home = ({ addToCartRequest, amount }) => {
   useEffect(() => {
     async function getProducts() {
       try {
-        const response = await api.get('products')
+        const response = await api.get('/api/products')
         const data = response.data.map((product) => ({
           ...product,
           priceFormatted: formatPrice(product.price),
